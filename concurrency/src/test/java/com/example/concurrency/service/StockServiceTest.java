@@ -1,6 +1,7 @@
 package com.example.concurrency.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -73,6 +74,7 @@ class StockServiceTest {
 
         //then
         assertThat(stock1.getQuantity()).isEqualTo(0L);
+
     }
 
     @Test
