@@ -1,6 +1,5 @@
 package com.example.api.service;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.concurrent.CountDownLatch;
@@ -52,6 +51,8 @@ class CouponServiceTest {
             });
         }
         latch.await();
+        Thread.sleep(10000);
+
         final long count = couponRepository.count();
 
         //then
