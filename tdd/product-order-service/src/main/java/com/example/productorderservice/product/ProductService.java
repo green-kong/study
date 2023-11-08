@@ -1,6 +1,7 @@
 package com.example.productorderservice.product;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductService {
@@ -10,6 +11,7 @@ public class ProductService {
         this.productPort = productPort;
     }
 
+    @Transactional
     public void addProduct(final ProductAddRequest request) {
         final Product product = new Product(
                 request.productName(),
@@ -18,5 +20,11 @@ public class ProductService {
         );
 
         productPort.save(product);
+    }
+
+    public GetProductResponse findProduct(final Long productId) {
+        Product product = productPort.findProductById(productId);
+        return new GetProductResponse(product.getId(), product.getProductName(), product.getProductPrice(),
+                product.getDiscountPolicy().name());
     }
 }
